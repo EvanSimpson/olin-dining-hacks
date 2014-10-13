@@ -1,18 +1,39 @@
 extends layout
 
 block content
-    h1 Submit a New Recipe
+  h1 Submit a New Recipe
 
-    form.form-horizontal(action='/quotes', method='post')
-        .control-group
-            label.control-label(for='quote') Quotation:
-            .controls
-                textarea(id='quote', name='quote', rows=6) "Text"
-        .control-group
-            label.control-label(for='names') People / context:
-            .controls
-                | &mdash; 
-            input(id='names', name='name', type='text', placeholder='People or setting')
-        .control-group
-          .controls
-            button.btn-success.btn(type='submit') Post
+  form.form-horizontal(action='/recipe', method='post')
+    input(type='hidden', id='user_id', name='user_id', value=user.id)
+    input(type='hidden', id='display_name', name='display_name', value=user.nickname)
+    .control-group
+      label.control-label(for='quote') Recipe Name:
+      .controls
+        input(id='name', name='name', rows=6, value="My Cool Recipe")
+    .control-group
+      label.control-label(for='ingredients') List of ingredients (Comma separated)
+      .controls
+        input(id='ingredients', name='ingredients', type='text')
+      .control-group
+        label.control-label(for="instructions") Instructions
+        .controls
+          textarea(id='instructions', name='instructions', type='text')
+      .control-group
+        .controls
+          label.control-label(for='breakfast') Breakfast
+            input(id='breakfast', name='breakfast', type='checkbox', value='breakfast')
+        .controls
+          label.control-label(for='lunch') Lunch
+            input(id='lunch', name='lunch', type='checkbox', value=true)
+        .controls
+          label.control-label(for='dinner') Dinner
+            input(id='dinner', name='dinner', type='checkbox', value=true)
+        .controls
+          label.control-label(for='dessert') Dessert
+            input(id='dessert', name='dessert', type='checkbox', value=true)
+        .controls
+          label.control-label(for='drink') Drink
+            input(id='drink', name='drink', type='checkbox', value=true)
+      .control-group
+        .controls
+          button.btn-success.btn(type='submit') Post

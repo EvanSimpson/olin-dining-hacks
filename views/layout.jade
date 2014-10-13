@@ -1,15 +1,13 @@
 doctype html
 html
-    head
-        title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
-    body
-        h3(id="navHeader") Navigation
-        ul(id="nav")
-            a(href="/") Home
-            br
-            a(href="/recipes") List of recipes
-            br
-            a(href="/recipe/new") Submit a new recipe
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h3(id="navHeader") Navigation
+    ul(id="nav")
+      a(href="/") Home
+      a(href="/recipes") List of recipes
+      a(href="/new") Submit a new recipe
 
-        block content
+    block content
