@@ -4,6 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
+var olinapps = require('olinapps');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +25,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'keep it secret, keep it safe',
+    store: new MongoStore({
+      url: process.env.MONGOLAB_URI || 'mongodb://localhost/olin-dining-hacks'
+    })
+}));
+
+// OlinApps login
+app.post('/login', olinapps.login);
+app.all('/logout', olinapps.logout);
+app.all('/*', olinapps.middleware);
+app.all('/*', olinapps.loginRequired);
+
+app.all('/*', function (req, res, next) {
+  if (olinapps.user(req).domain != 'students.olin.edu') {
+    return res.send('<h1>Students only.</h1> <p>Sorry, this application is closed to non-students. Please apply for next candidates\' weekend!</p>');
+  }
+  next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
