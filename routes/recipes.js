@@ -38,7 +38,7 @@ module.exports = function(db){
     });
   });
 
-  router.get('/recipe:recipe_id', function(req, res){
+  router.get('/recipe/:recipe_id', function(req, res){
     // view the requested recipe - should render view
     db.recipes.findOne({
       id: req.params.recipe_id
