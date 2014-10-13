@@ -1,18 +1,18 @@
 extends layout
 
 block content
-	h1 Submit a New Recipe
+  h1 Submit a New Recipe
 
-	form.form-horizontal(action='/quotes', method='post')
-		.control-group
-			label.control-label(for='quote') Quotation:
-			.controls
-				textarea(id='quote', name='quote', rows=6) "Text"
-		.control-group
-			label.control-label(for='names') People / context:
-			.controls
-				| &mdash; 
-	        input(id='names', name='name', type='text', placeholder='People or setting')
-	    .control-group
-	      .controls
-	        button.btn-success.btn(type='submit') Post
+  form.form-horizontal(action='/quotes', method='post')
+    .control-group
+      label.control-label(for='quote') Quotation:
+      .controls
+        textarea(id='quote', name='quote', rows=6) "Text"
+    .control-group
+      label.control-label(for='names') People / context:
+      .controls
+        | &mdash;
+          input(id='names', name='name', type='text', placeholder='People or setting')
+      .control-group
+        .controls
+          button.btn-success.btn(type='submit') Post
