@@ -6,11 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var mongojs = require('mongojs');
 
 var olinapps = require('olinapps');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var recipes = require('./routes/recipes');
 
 var app = express();
 
