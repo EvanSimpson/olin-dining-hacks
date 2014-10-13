@@ -57,11 +57,11 @@ module.exports = function(db){
 
   router.get('/recipe/:recipe_id', function(req, res){
     // view the requested recipe - should render view
-    console.log(req.params);
     db.recipes.findOne({
-      id: new ObjectID(req.params.recipe_id)
+      _id: new ObjectID(req.params.recipe_id)
     }, function(err, doc){
       if (!err){
+        console.log(doc);
         res.render('recipe', doc);
       }else{
         res.redirect('/');
