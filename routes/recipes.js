@@ -4,10 +4,21 @@ var router = express.Router();
 module.exports = function(db){
   router.post('/recipe', function(req, res){
     // post a new recipe and save to database
-    if (req.user.id == req.recipe.user_id){
-      db.recipes.save(
-        req.recipe,
-        res.redirect.bind(res, '/')
+    var ingredients = req.body.ingredients.split(",");
+    if (req.session.user.id == req.body.user_id){
+      db.recipes.save({
+        name: req.body.name,
+        user_id: req.body.user_id,
+        display_name: req.body.display_name,
+        ingredients: ingredients,
+        instructions: req.body.instructions,
+        breakfast: req.body.breakfast || false,
+        lunch: req.body.lunch || false,
+        dinner: req.body.dinner || false,
+        dessert: req.body.dessert || false,
+        drink: req.body.drink || false
+      },
+      res.redirect.bind(res, '/')
       );
     }
   });
@@ -39,7 +50,7 @@ module.exports = function(db){
   });
 
   router.get('/recipe/new', function(req, res){
-    res.render('new', {user: req.user});
+    res.render('new', {user: req.session.user});
   })
 
   router.get('/recipe/:recipe_id', function(req, res){
