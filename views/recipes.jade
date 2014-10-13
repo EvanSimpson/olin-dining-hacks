@@ -2,15 +2,9 @@ extends layout
 
 block content
 	h1 Olin Dining Hacks
-	h2 #{recipe.name}
-	p Uploaded by #{user}
+	h2 All uploaded recipes
 
-	h3 Ingredients
-	ul(id="ingredientList")
-		each item in recipe.ingredients
-			li(class="recipeContent") #{item}
-
-	h3 Instructions
-	ul(id="instructions")
-		each item in recipe.instructions
-			li(class="instructionsContent") #{item}
+	ul
+		each item in recipes
+			il
+				a(href="/recipe/#{item.id}") #{item.name}
