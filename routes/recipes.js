@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var ObjectID = require('mongodb').ObjectID;
+
 module.exports = function(db){
   router.post('/recipe', function(req, res){
     // post a new recipe and save to database
