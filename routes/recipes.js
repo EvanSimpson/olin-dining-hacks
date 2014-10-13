@@ -38,6 +38,10 @@ module.exports = function(db){
     });
   });
 
+  router.get('/recipe/new', function(req, res){
+    res.render('new', {user: req.user});
+  })
+
   router.get('/recipe/:recipe_id', function(req, res){
     // view the requested recipe - should render view
     db.recipes.findOne({
