@@ -3,8 +3,8 @@ extends layout
 block content
 
     h1 Olin Dining Hacks
-    h2 #{recipe.name}
-    p Uploaded by #{user}
+    h2= recipe.name
+    p Uploaded by #{recipe.display_name}
     p
         back to
         a(href="/recipes")
