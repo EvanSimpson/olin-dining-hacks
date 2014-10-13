@@ -55,8 +55,9 @@ module.exports = function(db){
 
   router.get('/recipe/:recipe_id', function(req, res){
     // view the requested recipe - should render view
+    console.log(req.params);
     db.recipes.findOne({
-      id: req.params.recipe_id
+      id: new ObjectID(req.params.recipe_id)
     }, function(err, doc){
       if (!err){
         res.render('recipe', doc);
