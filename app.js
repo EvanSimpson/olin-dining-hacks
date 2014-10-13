@@ -12,15 +12,14 @@ var olinapps = require('olinapps');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var recipes = require('./routes/recipes');
+db = mongojs(process.env.MONGOLAB_URI || 'olin-dining-hacks', ['recipes']);
+var recipes = require('./routes/recipes')(db);
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-db = mongojs(process.env.MONGOLAB_URI || 'olindininghacks', ['recipes']);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
