@@ -1,19 +1,37 @@
 extends layout
 
 block content
-	h1 Olin Dining Hacks
-	h2 #{recipe.name}
-	p Uploaded by #{user}
-	p
-		back to
-		a(href="/recipes")
+    h1 Olin Dining Hacks
+    h2 #{recipe.name}
+    p Uploaded by #{user}
+    p
+        back to
+        a(href="/recipes")
 
-	h3 Ingredients
-	ul(id="ingredientList")
-		each item in recipe.ingredients
-			li(class="recipeContent") #{item}
+    h3 Ingredients
+    ul(id="ingredientList")
+        each item in recipe.ingredients
+            li(class="recipeContent") #{item}
 
-	h3 Instructions
-	ul(id="instructions")
-		each item in recipe.instructions
-			li(class="instructionsContent") #{item}
+    h3 Instructions
+    ul(id="instructions")
+        each item in recipe.instructions
+            li(class="instructionsContent") #{item}
+
+    h3 Tags
+    ul(id="tags")
+        if recipe.breakfast
+            li Breakfast
+            br
+        if recipe.lunch
+            li Lunch
+            br
+        if recipe.dinner
+            li Dinner
+            br
+        if recipe.dessert
+            li Dessert
+            br
+        if recipe.drink
+            li Drink
+            br

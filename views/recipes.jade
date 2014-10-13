@@ -1,10 +1,10 @@
 extends layout
 
 block content
-	h1 Olin Dining Hacks
-	h2 All uploaded recipes
+    h1 Olin Dining Hacks
+    h2 All uploaded recipes
 
-	ul
-		each item in recipes
-			il
-				a(href="/recipe/#{item.id}") #{item.name}
+    ul
+        each item in recipes
+            il
+                a(href="/recipe/#{item.id}") #{item.name}
