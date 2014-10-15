@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Olin' });
+  if (req.session.user) {
+    res.redirect('/recipes');
+  }
 });
 
 module.exports = router;

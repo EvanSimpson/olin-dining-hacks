@@ -1,12 +1,12 @@
 extends layout
 
 block content
-  h1 Olin Dining Hacks
+  span
+    a(href="/recipes")
+      h1 Olin Dining Hacks
+    a.btn.btn-success#recipe-new(href="/recipe/new") + New Recipe
   h2 #{name}
   p Uploaded by #{display_name}
-  p
-    | back to
-    a(href="/recipes")
 
   h3 Ingredients
   ul(id="ingredientList")

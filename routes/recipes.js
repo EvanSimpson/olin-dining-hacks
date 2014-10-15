@@ -46,9 +46,11 @@ module.exports = function(db){
   });
 
   router.get('/recipes', function(req, res){
-    db.recipes.find(function(err, docs){
-      res.render('recipes', {recipes: docs});
-    });
+    if (req.session.user){
+      db.recipes.find(function(err, docs){
+        res.render('recipes', {recipes: docs, user: req.session.user});
+      });
+    }
   });
 
   router.get('/recipe/new', function(req, res){
@@ -57,16 +59,20 @@ module.exports = function(db){
 
   router.get('/recipe/:recipe_id', function(req, res){
     // view the requested recipe - should render view
-    db.recipes.findOne({
-      _id: new ObjectID(req.params.recipe_id)
-    }, function(err, doc){
-      if (!err){
-        console.log(doc);
-        res.render('recipe', doc);
-      }else{
-        res.redirect('/');
-      }
-    });
+    if (req.session.user){
+      db.recipes.findOne({
+        _id: new ObjectID(req.params.recipe_id)
+      }, function(err, doc){
+        if (!err){
+          doc.user = req.session.user;
+          res.render('recipe', doc);
+        }else{
+          res.redirect('/');
+        }
+      });
+    }else{
+      redirect('/login');
+    }
   });
 
   return router;
