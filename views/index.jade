@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Olin Dining Hacks
+  a.btn.btn-success#recipe-new(href="/recipe/new") + New Recipe
+  h2 All uploaded recipes
+
+  ul
+    if recipes
+      each item in recipes
+        il
+          a(href="/recipe/#{item._id}") #{item.name}
